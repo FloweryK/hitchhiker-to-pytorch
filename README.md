@@ -27,27 +27,27 @@ The Hitchhiker's Guide to the Pytorch
 
 ## Installing
 
-3. 우선 다음을 통해 프로젝트를 가져오도록 합니다.
+1. 우선 다음을 통해 프로젝트를 가져오도록 합니다.
 
-```bash
-$ git clone https://github.com/FloweryK/hitchhiker-to-pytorch.git
-```
+   ```bash
+   $ git clone https://github.com/FloweryK/hitchhiker-to-pytorch.git
+   ```
 
-4. (옵션) 다음을 통해 가상환경을 만들어 프로젝트 내에서만 사용하는 라이브러리들을 관리할 수 있습니다.
+2. (옵션) 다음을 통해 가상환경을 만들어 프로젝트 내에서만 사용하는 라이브러리들을 관리할 수 있습니다.
 
-```bash
-$ virtualenv venv -p python3
-$ source venv/bin/activate	# 가상환경 켜기
-$ deactivate								# 가상환경 끄기
-```
+   ```bash
+   $ virtualenv venv -p python3
+   $ source venv/bin/activate	# 가상환경 켜기
+   $ deactivate								# 가상환경 끄기
+   ```
 
-5. 다음을 통해 필요한 라이브러리들을 설치합니다. 
+3. 다음을 통해 필요한 라이브러리들을 설치합니다. 
 
-```bash
-$ pip3 install -r requirements.txt
-```
+   ```bash
+   $ pip3 install -r requirements.txt
+   ```
 
-
+   
 
 ## How to run the codes
 
