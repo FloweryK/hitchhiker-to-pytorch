@@ -10,7 +10,7 @@ The Hitchhiker's Guide to the Pytorch
 
 ## Table of Contents
 
-1. [GAN으로 MNIST 데이터 만들기](https://github.com/FloweryK/hitchhiker-to-pytorch/tree/master/mnist-generating-gan)
+1. [GAN으로 MNIST 데이터 만들기](mnist-generating-gan/README.md)
 2. CNN으로 cifar10 데이터 구분하기
 3. 모델 저장하기, 로드하기
 4. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
