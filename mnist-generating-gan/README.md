@@ -1,6 +1,6 @@
 ## MNIST 데이터셋
 
-![Mnist Examples][../img/MnistExamples.png]
+![Mnist Examples][img/MnistExamples.png]
 
 
 
