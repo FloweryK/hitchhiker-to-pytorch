@@ -13,6 +13,7 @@ The Hitchhiker's Guide to the Pytorch
 1. GAN으로 MNIST 데이터 만들기
 2. CNN으로 MNIST 데이터 구분하기
 3. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
+4. GPU로 훈련하기
 
 
 
@@ -23,7 +24,7 @@ The Hitchhiker's Guide to the Pytorch
 3. 우선 다음을 통해 프로젝트를 가져오도록 합니다.
 
 ```bash
-$ git clone 
+$ git clone https://github.com/FloweryK/hitchhiker-to-pytorch.git
 ```
 
 4. (옵션) 다음을 통해 가상환경을 만들어 프로젝트 내에서만 사용하는 라이브러리들을 관리할 수 있습니다.
