@@ -2,7 +2,7 @@
 
 ## Cifar10 dataset
 
-![](/Users/flowerk/PycharmProjects/hitchhiker-to-pytorch/cnn-cifar10-classifier/img/cifar10examples.png)
+![](img/cifar10examples.png)
 
 
 
