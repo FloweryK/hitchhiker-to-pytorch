@@ -12,8 +12,9 @@ The Hitchhiker's Guide to the Pytorch
 
 1. [GAN으로 MNIST 데이터 만들기][https://github.com/FloweryK/hitchhiker-to-pytorch/tree/master/mnist-generating-gan]
 2. CNN으로 MNIST 데이터 구분하기
-3. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
-4. CUDA를 이용해 GPU로 훈련하기 (단일 처리, 병렬 처리)
+3. 모델 저장하기, 로드하기
+4. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
+5. CUDA를 이용해 GPU로 훈련하기 (단일 처리, 병렬 처리)
 
 
 
