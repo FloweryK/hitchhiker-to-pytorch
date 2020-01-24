@@ -1,4 +1,4 @@
-## MNIST 데이터셋
+## MNIST dataset
 
 ![Mnist Examples](img/MnistExamples.png)
 
@@ -30,5 +30,25 @@ $ python3 main.py
 
 ## Results (samples)
 
+*epoch 1: 학습 초기에는 대충 중앙에 숫자들이 분포해있다는 정도만 배운 것 같네요.*
 
+![](samples/000.png)
+
+*epoch 50: 0부터 9까지 숫자의 형태를 조금 배운 것 같습니다.*
+
+![](samples/050.png)
+
+*epoch 150: 점차 형태가 완성된 숫자들이 나오기 시작합니다.*
+
+![](samples/150.png)
+
+*epoch 200: 으음... 학습을 많이 시킨다고 꼭 좋은 결과가 나오는 건 아닌 것 같군요!*
+
+![](samples/199.png)
+
+
+
+## References
+
+[taeoh-kim's blog: tensorflow로 50줄짜리 original gan code 구현하기](https://taeoh-kim.github.io/blog/tensorflow로-50줄짜리-original-gan-code-구현하기/)
 

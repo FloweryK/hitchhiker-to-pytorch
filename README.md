@@ -10,8 +10,8 @@ The Hitchhiker's Guide to the Pytorch
 
 ## Table of Contents
 
-1. [GAN으로 MNIST 데이터 만들기](mnist-generating-gan/README.md)
-2. CNN으로 cifar10 데이터 구분하기
+1. [GAN으로 MNIST 데이터 만들기](gan-mnist-generator/README.md)
+2. [CNN으로 cifar10 데이터 구분하기](cnn-cifar10-classifier/README.md)
 3. 모델 저장하기, 로드하기
 4. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
 5. CUDA를 이용해 GPU로 훈련하기 (단일 처리, 병렬 처리)
@@ -53,9 +53,4 @@ $ pip3 install -r requirements.txt
 
 코드의 설명과 작동 방식은 각 디렉토리 내 README.md에서 설명합니다. 
 
-
-
-## Acknowledgments
-
-- [taeoh-kim's blog: tensorflow로 50줄짜리 original gan code 구현하기](https://taeoh-kim.github.io/blog/tensorflow로-50줄짜리-original-gan-code-구현하기/)
 
