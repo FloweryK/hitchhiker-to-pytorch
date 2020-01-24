@@ -10,17 +10,22 @@ The Hitchhiker's Guide to the Pytorch
 
 ## Table of Contents
 
-1. GAN으로 MNIST 데이터 만들기
+1. [GAN으로 MNIST 데이터 만들기][https://github.com/FloweryK/hitchhiker-to-pytorch/tree/master/mnist-generating-gan]
 2. CNN으로 MNIST 데이터 구분하기
 3. 내 입맛에 맞는 데이터로 훈련하기 (커스텀 데이터로더 만들기)
-4. GPU로 훈련하기
+4. CUDA를 이용해 GPU로 훈련하기 (단일 처리, 병렬 처리)
+
+
+
+## Before we start
+
+* 이 레포지토리의 코드들은 모두 python3, torch를 사용합니다. python3.6.8 이상을 사용하시는 걸 추천합니다. 
+* 각 디렉토리는 데이터셋을 포함하고 있지 않습니다. 코드를 실행시키면 맨 처음에만 예제 데이터를 다운로드하게 됩니다!
 
 
 
 ## Installing
 
-1. 이 레포지토리의 코드들은 모두 python3, torch를 사용합니다. python3.6.8 이상을 사용하시는 걸 추천합니다. 
-2. 각 예제들은 데이터셋을 포함하고있지 않고, 코드를 실행시키면 예제 데이터를 다운로드하게 됩니다. 
 3. 우선 다음을 통해 프로젝트를 가져오도록 합니다.
 
 ```bash
