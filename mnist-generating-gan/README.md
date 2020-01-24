@@ -1,3 +1,9 @@
+## MNIST 데이터셋
+
+![Mnist Examples][../img/MnistExamples.png]
+
+
+
 ## How to run the code
 
 ```bash
