@@ -12,7 +12,7 @@ The Hitchhiker's Guide to the Pytorch
 
 1. [GAN으로 MNIST 데이터 만들기](gan-mnist-generator/README.md)
 2. [CNN으로 cifar10 데이터 구분하기](cnn-cifar10-classifier/README.md)
-3. 모델 저장하기, 로드하기
+3. [모델 저장하기, 로드하기](cuda-gpu-parallelism/README.md)
 4. 자신의 데이터를 사용하기 (custom Dataset, Dataloader)
 5. CUDA를 이용해 GPU로 훈련하기 (단일 처리, 병렬 처리)
 
