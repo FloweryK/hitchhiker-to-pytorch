@@ -1,13 +1,12 @@
-__pycache__
-.DS_Store
-/.idea
-**/__pycache__
-**/.DS_Store
-**/.idea
-
-/venv
-/data
-**/data
-
+# common
+__pycache__/
+.idea/
 **.png
 **.jpg
+venv/
+
+# Mac
+.DS_Store
+
+# Data samples
+data/

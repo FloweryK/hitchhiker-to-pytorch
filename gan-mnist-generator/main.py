@@ -1,9 +1,8 @@
 from funcs import onehot, savefig
-
 import torch
 from torch import nn
-from torch.utils.data import DataLoader
 from torch.optim import Adam
+from torch.utils.data import DataLoader
 from torchvision import transforms, datasets
 
 # Configurations
@@ -55,13 +54,13 @@ class Generator(nn.Module):
 
 
 # define networks
-G = Generator()
 D = Discriminator()
+G = Generator()
 
 # define losses and optimizers
 criterion = nn.BCELoss()
-G_optim = Adam(params=G.parameters(), lr=lr)
 D_optim = Adam(params=D.parameters(), lr=lr)
+G_optim = Adam(params=G.parameters(), lr=lr)
 
 for epoch in range(N_EPOCH):
     for i, (images, labels) in enumerate(trainloader):
