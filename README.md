@@ -33,12 +33,14 @@ The Hitchhiker's Guide to the Pytorch
    $ git clone https://github.com/FloweryK/hitchhiker-to-pytorch.git
    ```
 
-2. (옵션) 다음을 통해 가상환경을 만들어 프로젝트 내에서만 사용하는 라이브러리들을 관리할 수 있습니다.
+2. (옵션: 가상환경 사용하기) 
+   다음을 통해 가상환경을 만들어 프로젝트 내에서만 사용하는 라이브러리들을 관리할 수 있습니다.
 
    ```bash
    $ virtualenv venv -p python3
-   $ source venv/bin/activate	# 가상환경 켜기
-   $ deactivate								# 가상환경 끄기
+   $ source venv/bin/activate # 가상환경 켜기 (linux, mac)
+   $ source venv/Scripts/activate # 가상환경 켜기 (Windows)
+   $ deactivate # 가상환경 끄기
    ```
 
 3. 다음을 통해 필요한 라이브러리들을 설치합니다. 
@@ -52,5 +54,25 @@ The Hitchhiker's Guide to the Pytorch
 ## How to run the codes
 
 코드의 설명과 작동 방식은 각 디렉토리 내 README.md에서 설명합니다. 
+
+
+
+## Troubleshooting
+
+##### [Windows] import torch 에러 (DLL load failed, WinError 126)
+
+```bash
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  ...
+  ...
+    self._handle = _dlopen(self._name, mode)
+OSError: [WinError 126] The specified module could not be found
+```
+
+윈도우 업데이트가 제대로 되지 않은 경우 발생하는 에러입니다. Process Monitor로 확인하면, MSVCP140.dll을 찾을 수 없어 로드하지 못하는 것을 알 수 있습니다. 
+
+마이크로소프트 공식 홈페이지 [Visual Studio 2015용 Visual C++ 재배포 가능 패키지](https://www.microsoft.com/ko-kr/download/details.aspx?id=48145)에서 파일을 다운받아 설치하시면 정상적으로 로드 할 수 있습니다. 
+
 
 
