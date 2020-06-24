@@ -10,3 +10,4 @@ venv/
 
 # Data samples
 data/
+**/t.py
