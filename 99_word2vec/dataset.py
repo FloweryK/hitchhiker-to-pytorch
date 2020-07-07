@@ -1,98 +1,88 @@
 import re
 import torch
-import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 
 
 class PTBdata(Dataset):
-    def __init__(self, path='ptb.train.txt', window=1, limit=0):
+    def __init__(self, path='ptb.train.txt', window=2, limit=0):
         self.path = path
-        self.window = window
         self.limit = limit
-
-        self.sentences, self.word2idx, self.idx2word = self.preprocess()
-        self.size = len(self.sentences)
+        self.window = window
+        self.targets, self.contexts, self.word2idx, self.idx2word = self.preprocess(mode='not test')
         self.vocab_size = len(self.word2idx)
 
     def __len__(self):
-        return self.size
+        return len(self.targets)
 
-    def __getitem__(self, item):
-        def _get_contexts(sentence, window):
-            return [sentence[i:i+window] + sentence[i+window+1:i+2*window+1] for i in range(len(sentence)-2*window)]
+    def __getitem__(self, i):
+        return {
+            'target': torch.tensor(self.targets[i]),
+            'context': torch.tensor(self.contexts[i])
+        }
 
-        def _get_targets(sentence, window):
-            return [sentence[i+window] for i in range(len(sentence)-2*window)]
+    def preprocess(self, mode='test'):
+        if mode is 'test':
+            raw_text = """We are about to study the idea of a computational process.
+            Computational processes are abstract beings that inhabit computers.
+            As they evolve, processes manipulate other abstract things called data.
+            The evolution of a process is directed by a pattern of rules
+            called a program. People create programs to direct processes. In effect,
+            we conjure the spirits of the computer with our spells."""
 
-        # extract contexts and targets from a single sentence
-        sentence = self.sentences[item]                     # (1, N)
-        contexts = _get_contexts(sentence, self.window)     # (N-2*window, 2*window)
-        targets = _get_targets(sentence, self.window)       # (1, N-2*window)
+            sentences = [sentence.split() for sentence in raw_text.split('.')]
+        else:
+            # read lines and preprocess
+            sentences = []
+            with open(self.path, 'r') as f:
+                while True:
+                    # read line
+                    sentence = f.readline()
+                    if not sentence:
+                        break
 
-        # convert idx representations into one-hot representation
-        contexts = F.one_hot(torch.tensor(contexts), self.vocab_size)   # (N-2*window, 2*window, vocab_size)
+                    # convert one sentence(string) into words(list)
+                    sentence = re.compile("[a-zA-Z'.#$]+|<unk>").findall(sentence)
 
-        # targets remain idx representations for cross-entropy loss in pytorch
-        targets = torch.tensor(targets)
+                    # add sentence if only the size is enough
+                    if len(sentence) >= 1 + 2 * self.window:
+                        sentences.append(sentence)
 
-        return contexts, targets
-
-    def preprocess(self):
-        # read lines and preprocess
-        sentences = []
-        with open(self.path, 'r') as f:
-            while True:
-                # read line
-                sentence = f.readline()
-                if not sentence:
-                    break
-
-                if self.limit and (self.limit < len(sentences)):
-                    break
-
-                # convert one sentence(string) into words(list)
-                sentence = re.compile("[a-zA-Z'.#$]+|<unk>").findall(sentence)
-
-                # add sentence if only the size is enough
-                if len(sentence) >= 1 + 2 * self.window:
-                    sentences.append(sentence)
+                    # load limit
+                    if self.limit and (len(sentences) >= self.limit):
+                        break
 
         # make vocab and dictionary
         vocab = sorted(list(set().union(*sentences)))
-        vocab = ['<PADDING>'] + vocab   # padding index: 0
         word2idx = {word: idx for idx, word in enumerate(vocab)}
         idx2word = {idx: word for idx, word in enumerate(vocab)}
 
-        # convert sentences into index representations
-        sentences = [[word2idx[word] for word in sentence] for sentence in sentences]
+        # make targets and contexts
+        targets = []
+        contexts = []
+        for sentence in sentences:
+            for i in range(self.window, len(sentence) - self.window):
+                # get target and context
+                target = sentence[i]
+                context = sentence[i-self.window:i] + sentence[i+1:i+1+self.window]
 
-        return sentences, word2idx, idx2word
+                # convert into indice representation
+                target = word2idx[target]
+                context = [word2idx[word] for word in context]
 
+                # append results
+                targets.append(target)
+                contexts.append(context)
 
-def collate_fn(batch):
-    max_len = max([len(targets) for _, targets in batch])
-
-    # add padding and stack
-    batch_contexts = torch.stack([F.pad(contexts, [0, 0, 0, 0, 0, max_len-contexts.shape[0]]) for contexts, _ in batch])
-    batch_targets = torch.stack([F.pad(targets, [0, max_len-targets.shape[0]]) for _, targets in batch])
-
-    return batch_contexts, batch_targets
+        return targets, contexts, word2idx, idx2word
 
 
 if __name__ == '__main__':
-    trainset = PTBdata(window=2)
-    trainloader = DataLoader(dataset=trainset,
-                             batch_size=3,
-                             shuffle=False,
-                             num_workers=1,
-                             collate_fn=collate_fn)
+    trainset = PTBdata(path='ptb.train.txt', window=2)
+    trainloader = DataLoader(dataset=trainset, batch_size=3)
 
     for data in trainloader:
-        print(data[0])
-        print(data[1])
-        print(data[0].shape)
-        print(data[1].shape)
-        break
+        print(data['target'])
+        print(data['context'])
 
 
 
