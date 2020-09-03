@@ -1,47 +1,27 @@
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
-import numpy as np
+from torch.utils.data import DataLoader
+from model import Net
+from dataset import Customset
 
 
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.fc1 = nn.Linear(1, 20)
-        self.fc2 = nn.Linear(20, 1)
+def run():
+    # Configurations
+    N_EPOCH = 1000
+    N_BATCH = 10
+    lr = 0.1
 
-    def forward(self, x):
-        x = F.sigmoid(self.fc1(x))
-        x = self.fc2(x)
-        return x
-
-
-class Customset(Dataset):
-    def __init__(self, size=10000):
-        self.size = size
-        self.X = np.random.rand(self.size, 1)
-        self.T = self.X**2
-
-    def __len__(self):
-        return self.size
-
-    def __getitem__(self, item):
-        return self.X[item], self.T[item]
-
-
-if __name__ == '__main__':
     # dataset
     trainset = Customset()
-    trainloader = DataLoader(trainset, batch_size=10, shuffle=True, num_workers=1)
+    trainloader = DataLoader(trainset, batch_size=N_BATCH, shuffle=True, num_workers=1)
 
     # model and optimizer
     net = Net()
     criterion = nn.MSELoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.1, momentum=0)
+    optimizer = optim.SGD(net.parameters(), lr=lr, momentum=0)
 
     # trainer
-    for epoch in range(1000):
+    for epoch in range(N_EPOCH):
         for i, data in enumerate(trainloader):
             # get batch data
             x, t = data
@@ -62,4 +42,9 @@ if __name__ == '__main__':
             print('\n epoch: %i | i: %i | loss: %.5f' % (epoch, i, loss))
             print(t.detach().numpy().tolist())
             print(predict.detach().numpy().tolist())
+
+
+if __name__ == '__main__':
+    run()
+
 
